@@ -1,1 +1,1 @@
-# https://vercel.com/barann6/my-app 
+# https://my-app-barann6.vercel.app/
