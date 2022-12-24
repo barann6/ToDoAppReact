@@ -1,22 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Task from "./Task";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Task from './Task';
 
-const TaskList = ({ data, onSwitchState, onDelete }) => {
+const TaskList = ({
+  data,
+  onSwitchState,
+  onDelete,
+  onToggleTimer,
+  decreaseTime,
+}) => {
   return (
     <ul className="todo-list">
       {data.map((task) => {
         return (
-          <Task
-            key={task.id}
-            state={task.state}
-            id={task.id}
-            text={task.text}
-            timer={task.timer}
-            created={task.created}
-            onSwitchState={onSwitchState}
-            onDelete={onDelete}
-          />
+          <li className={task.state} key={task.id}>
+            <Task
+              text={task.text}
+              state={task.state}
+              created={task.created}
+              id={task.id}
+              time={task.time}
+              going={task.going}
+              onSwitchState={onSwitchState}
+              onDelete={onDelete}
+              onToggleTimer={onToggleTimer}
+              decreaseTime={decreaseTime}
+            />
+          </li>
         );
       })}
     </ul>

@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 class Task extends React.Component {
   constructor(props) {
@@ -10,13 +10,11 @@ class Task extends React.Component {
       created: formatDistanceToNow(this.props.created, {
         includeSeconds: true,
       }),
-      timer: this.props.timer,
-      countdown: false,
     };
   }
 
   componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
+    this.timerID = setInterval(() => this.tick(), 5000);
   }
 
   componentWillUnmount() {
@@ -29,73 +27,68 @@ class Task extends React.Component {
         includeSeconds: true,
       }),
     });
-
-    this.setState((state) => {
-      if (state.countdown && state.timer > 0)
-        return {
-          timer: state.timer - 1,
-        };
-    });
   };
 
   render() {
-    let { state, id, text, onSwitchState, onDelete } = this.props;
-    let { created, timer } = this.state;
+    let { id, text, time, state, onSwitchState, onDelete, onToggleTimer } =
+      this.props;
+    let { created } = this.state;
     return (
-      <li className={state}>
         <div className="view">
           <input
             id={id}
             className="toggle"
             type="checkbox"
             onChange={() => onSwitchState(id)}
+            checked={state}
           />
           <label htmlFor={id}>
             <span className="title">{text}</span>
             <span className="description">
-              <label htmlFor="icon-play" className="icon icon-play" />
-              <label htmlFor="icon-pause" className="icon icon-pause" />
+              <label htmlFor={`iconPlay${id}`} className="icon icon-play" />
+              <label htmlFor={`iconPause${id}`} className="icon icon-pause" />
               <input
-                id="icon-play"
+                id={`iconPlay${id}`}
                 type="radio"
-                name="taskTimerToggle"
-                style={{ display: "none" }}
-                onChange={() => this.setState({ countdown: true })}
+                name={`iconTimer${id}`}
+                style={{ display: 'none' }}
+                onChange={() => {
+                  onToggleTimer(id, true);
+                }}
               />
               <input
-                id="icon-pause"
+                id={`iconPause${id}`}
                 type="radio"
-                name="taskTimerToggle"
-                style={{ display: "none" }}
-                onChange={() => this.setState({ countdown: false })}
+                name={`iconTimer${id}`}
+                style={{ display: 'none' }}
+                onChange={() => {
+                  onToggleTimer(id, false);
+                }}
               />
-              " {Math.floor(timer / 60)}:{timer % 60} "
+              " {Math.floor(time / 60)}:{time % 60} "
             </span>
             <span className="description">created {created} ago</span>
           </label>
           <button className="icon icon-edit"></button>
           <button
             className="icon icon-destroy"
-            onClick={() => onDelete(id)}
-          ></button>
+            onClick={() => onDelete(id)}></button>
         </div>
-      </li>
     );
   }
 }
 
 Task.defaultProps = {
-  state: "",
-  timer: 0,
+  state: '',
 };
 
 Task.propTypes = {
   text: PropTypes.string.isRequired,
-  timer: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  state: PropTypes.oneOf(["", "completed"]),
   onSwitchState: PropTypes.func,
   onDelete: PropTypes.func,
+  onToggleTimer: PropTypes.func,
+  decreaseTime: PropTypes.func,
 };
 
 export default Task;
