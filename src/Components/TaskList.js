@@ -1,14 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Task from './Task';
 
-const TaskList = ({
-  data,
-  onSwitchState,
-  onDelete,
-  onToggleTimer,
-  decreaseTime,
-}) => {
+const TaskList = ({ data }) => {
   return (
     <ul className="todo-list">
       {data.map((task) => {
@@ -21,10 +14,6 @@ const TaskList = ({
               id={task.id}
               time={task.time}
               going={task.going}
-              onSwitchState={onSwitchState}
-              onDelete={onDelete}
-              onToggleTimer={onToggleTimer}
-              decreaseTime={decreaseTime}
             />
           </li>
         );
@@ -35,11 +24,6 @@ const TaskList = ({
 
 TaskList.defaultProps = {
   data: [],
-};
-
-TaskList.propTypes = {
-  onSwitchState: PropTypes.func,
-  onDelete: PropTypes.func,
 };
 
 export default TaskList;

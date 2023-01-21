@@ -1,42 +1,33 @@
-import React from "react";
-import PropTypes from "prop-types";
-import TasksFilterButton from "./TasksFilterButton";
+import { useContext } from 'react';
 
-const TasksFilter = ({ filter, onToggleFilter }) => {
+import Context from './Сontext';
+
+import TasksFilterButton from './TasksFilterButton';
+
+const TasksFilter = () => {
+  const { currentFilter } = useContext(Context);
   return (
     <ul className="filters">
       <li>
         <TasksFilterButton
-          className={filter === "All" ? "selected" : ""}
-          onToggleFilter={onToggleFilter}
+          className={currentFilter === 'All' ? 'selected' : ''}
           value="All"
         />
       </li>
       <li>
         <TasksFilterButton
-          className={filter === "Active" ? "selected" : ""}
-          onToggleFilter={onToggleFilter}
+          className={currentFilter === 'Active' ? 'selected' : ''}
           value="Active"
         />
       </li>
       <li>
         <TasksFilterButton
-          className={filter === "Completed" ? "selected" : ""}
-          onToggleFilter={onToggleFilter}
+          className={currentFilter === 'Completed' ? 'selected' : ''}
           value="Completed"
         />
       </li>
     </ul>
   );
-};
-
-TasksFilter.defaultProps = {
-  filter: "All",
-};
-
-TasksFilter.propTypes = {
-  filter: PropTypes.oneOf(["All", "Active", "Completed"]),
-  onToggleFilter: PropTypes.func,
 };
 
 export default TasksFilter;

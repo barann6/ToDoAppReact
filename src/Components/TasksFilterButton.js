@@ -1,16 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
+import { useContext } from 'react';
 
-const TasksFilterButton = ({ value, className, onToggleFilter }) => {
+import PropTypes from 'prop-types';
+import Context from './Сontext';
+
+const TasksFilterButton = ({ value, className }) => {
+  const { toggleTasksFilter } = useContext(Context);
   return (
     <label htmlFor={value} className={className}>
       <input
-        style={{ display: "none" }}
+        style={{ display: 'none' }}
         type="radio"
         name="TasksFilterButton"
         id={value}
         value={value}
-        onChange={(e) => onToggleFilter(e.target.value)}
+        onChange={(e) => toggleTasksFilter(e.target.value)}
       />
       {value}
     </label>
@@ -18,11 +21,10 @@ const TasksFilterButton = ({ value, className, onToggleFilter }) => {
 };
 
 TasksFilterButton.defaultProps = {
-  className: "",
+  className: '',
 };
 
 TasksFilterButton.propTypes = {
-  onToggleFilter: PropTypes.func,
   value: PropTypes.string.isRequired,
 };
 
