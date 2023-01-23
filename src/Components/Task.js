@@ -35,17 +35,15 @@ const Task = ({ text, state, created, id, time }) => {
           <label htmlFor={`iconPause${id}`} className="icon icon-pause" />
           <input
             id={`iconPlay${id}`}
-            type="radio"
-            name={`iconTimer${id}`}
+            type="button"
             style={{ display: 'none' }}
-            onChange={() => switchTaskTimer(id, true)}
+            onClick={() => switchTaskTimer(id, true)}
           />
           <input
             id={`iconPause${id}`}
-            type="radio"
-            name={`iconTimer${id}`}
+            type="button"
             style={{ display: 'none' }}
-            onChange={() => switchTaskTimer(id, false)}
+            onClick={() => switchTaskTimer(id, false)}
           />
           " {Math.floor(time / 60)}:{time % 60} "
         </span>
