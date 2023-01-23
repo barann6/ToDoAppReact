@@ -3,7 +3,7 @@ P.S. Кнопки поправил. Возможности редактиров�
   https://platform.kata.academy/user/courses/2/1/4/9 - отметить как выполненную или удалить задачу <br>
   https://platform.kata.academy/user/courses/2/1/4/14 - счетчик, фильтрация, отчистка выполненных задач <br>
   https://platform.kata.academy/user/courses/2/1/4/20 - фиксировать время создания задачи в момент ее добавления <br>
-  https://platform.kata.academy/user/courses/2/1/5/5 - eslint, prettier, husky, lint-staged <br>
+  https://platform.kata.academy/user/courses/2/1/5/5 - eslint, prettier, husky, lint-staged (✔ВЕРНОЕ РЕШЕНИЕ, задачи не редактируются)<br>
   https://platform.kata.academy/user/courses/2/3/2/11 - рефакторинг на хуки реакт <br>
 
 # https://my-to-do-app-one.vercel.app/
